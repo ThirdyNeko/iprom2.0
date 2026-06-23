@@ -11,14 +11,14 @@ $pdo = qa_db();
 ?>
 
 <style>
-    #Branchtable th,
-    #Branchtable td {
+    #LOAtable th,
+    #LOAtable td {
         border-right: 1px solid #dee2e6;
     }
-    #Branchtable.table-hover tbody tr:hover > td {
+    #LOAtable.table-hover tbody tr:hover > td {
         background-color: #e6f0ff !important;
     }
-    #Branchtable th
+    #LOAtable th
     {
         text-align: center;
         vertical-align: middle;
@@ -35,19 +35,19 @@ $pdo = qa_db();
         font-size: 14px;
     }
 
-    #Branchtable td {
+    #LOAtable td {
         font-size: 14px;
     }
 
-    #Branchtable th:first-child,
-    #Branchtable td:first-child {
+    #LOAtable th:first-child,
+    #LOAtable td:first-child {
         border-left: 1px solid #dee2e6; /* remove extra line at start */
         text-align: center !important;
     }
-    #Branchtable td:nth-child(4) {
+    #LOAtable td:nth-child(4) {
         text-align: center !important;
     }
-    #Branchtable td:last-child {
+    #LOAtable td:last-child {
         text-align: center !important;
     }
 
@@ -83,10 +83,6 @@ $pdo = qa_db();
 
         <div class="d-flex justify-content-between align-items-center mb-3">
             <h4 class="fw-bold mb-0">Branch List</h4>
-
-            <button id="syncBranchesBtn" class="btn btn-success">
-                ⟳ Sync Branches
-            </button>
         </div>
 
         <div class="card shadow-sm">
@@ -99,7 +95,7 @@ $pdo = qa_db();
                         <div class="clear-input">
                             <input type="text" id="filterName"
                                 class="form-control form-control-sm filter-control"
-                                placeholder="Branch, Company, Region, Area">
+                                placeholder="Promodiser, Agency, Employment Status, Sub Status">
                             <button type="button" class="clear-btn" data-target="filterName">×</button>
                         </div>
                     </div>
