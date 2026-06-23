@@ -1,0 +1,67 @@
+<?php
+$plantillaBranches = [];
+
+try {
+    // Fetch branches only
+    $stmt = $pdo->prepare("EXEC dbo.get_branches_brands @branch = NULL");
+    $stmt->execute();
+    $plantillaBranches = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+} catch (PDOException $e) {
+    // Optional: log error
+    // error_log($e->getMessage());
+
+    // Fallback: empty branches (prevents crash)
+    $plantillaBranches = [];
+}
+?>
+
+<div class="modal fade" id="addPlantillaModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form id="addPlantillaForm">
+                <div class="modal-header">
+                    <h5 class="modal-title">Create Plantilla</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label class="form-label">Branch</label>
+                        <select name="branch" id="branchSelect" class="form-select" required>
+                            <?php if (empty($plantillaBranches)): ?>
+                                <option value="">System under maintenance</option>
+                            <?php else: ?>
+                                <option value="">Select Branch</option>
+
+                                <?php foreach($plantillaBranches as $b): ?>
+                                    <option value="<?= htmlspecialchars($b['branch_code']) ?>">
+                                        <?= htmlspecialchars($b['branch']) ?>
+                                    </option>
+                                <?php endforeach; ?>
+
+                            <?php endif; ?>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Brand</label>
+                        <select name="brand" id="brandSelect" class="form-select" required>
+                            <option value="">Select Brand</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Count</label>
+                        <input type="number" name="required_count" class="form-control" min="1" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-success">Add</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="sweetalert/dist/sweetalert2.all.min.js"></script>
+<script src="assets/js/assignment/add_plantilla.js"></script>

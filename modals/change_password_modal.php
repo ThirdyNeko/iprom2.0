@@ -1,0 +1,77 @@
+<div class="modal fade" id="changePasswordModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="changePasswordModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+        <form id="changePasswordForm">
+            <div class="modal-header">
+                <h5 class="modal-title" id="changePasswordModalLabel">Change Password</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+                <div id="passwordAlert"></div> <!-- For success/error messages -->
+
+                <div class="mb-3">
+                    <label for="current_password" class="form-label">Current Password</label>
+                    <div class="input-group">
+                        <input type="password" class="form-control" id="current_password" name="current_password" required>
+                        <span class="input-group-text toggle-password" data-target="current_password" style="cursor:pointer;">
+                            <i class="bi bi-eye-slash"></i>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="new_password" class="form-label">New Password</label>
+                    <div class="input-group">
+                        <input type="password" class="form-control" id="new_password" name="new_password" required>
+                        <span class="input-group-text toggle-password" data-target="new_password" style="cursor:pointer;">
+                            <i class="bi bi-eye-slash"></i>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="confirm_password" class="form-label">Confirm New Password</label>
+                    <div class="input-group">
+                        <input type="password" class="form-control" id="confirm_password" name="confirm_password" required>
+                        <span class="input-group-text toggle-password" data-target="confirm_password" style="cursor:pointer;">
+                            <i class="bi bi-eye-slash"></i>
+                        </span>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary">Save</button>
+            </div>
+        </form>
+    </div>
+  </div>
+</div>
+
+
+
+<script src="sweetalert/dist/sweetalert2.all.min.js"></script>
+
+<script src="assets/js/password/change_password.js"></script>
+
+<script>
+const isFirstLogin = <?= json_encode(!empty($_SESSION['first_login'])) ?>;
+
+document.addEventListener("DOMContentLoaded", function () {
+  const modalEl = document.getElementById('changePasswordModal');
+
+  const modal = new bootstrap.Modal(modalEl, {
+    backdrop: isFirstLogin ? 'static' : true,
+    keyboard: !isFirstLogin
+  });
+
+  if (isFirstLogin) {
+    modal.show();
+
+    modalEl.addEventListener('hide.bs.modal', function (e) {
+      e.preventDefault();
+    });
+  }
+});
+</script>
