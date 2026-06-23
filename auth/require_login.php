@@ -1,5 +1,5 @@
 <?php
-define('BASE_URL', '/iprom/');
+define('BASE_URL', '/iprom2.0/');
 define('SESSION_TIMEOUT', 600);
 
 // Not logged in
