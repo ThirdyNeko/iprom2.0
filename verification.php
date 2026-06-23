@@ -112,6 +112,7 @@ $pdo = qa_db();
                                 <th>Employment Status</th>
                                 <th>Sub Status</th>
                                 <th>Effectivity Date</th>
+                                <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody></tbody>
